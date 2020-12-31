@@ -1,0 +1,35 @@
+<script>
+
+  let data_files = [ 'x86.json', 'arm.json' ];
+  let iterable = data_files.map(f => fetch(f).then(r => r.json()).then(data => data));
+
+  function build_compare_data (raw) {
+    //console.log(raw);
+    return {
+      name: raw.metadata.platform,
+      benchmarks: raw.benchmarks.map(lab => {
+        let num = 0;
+        let sum = 0;
+
+        lab.runs.forEach(run => {
+          if (run.values) {
+            num += run.values.length;
+            sum += run.values.reduce((a, v) => a + v, 0);
+          }
+        });
+
+        return {
+          name: lab.metadata.name,
+          desc: lab.metadata.description,
+          value: sum / num,
+        }
+      }),
+    };
+  }
+
+  Promise.all(iterable).then(resp => {
+    let compare_data = resp.map(raw => build_compare_data(raw));
+    console.log(compare_data);
+  });
+
+</script>
