@@ -1,35 +1,32 @@
-<script>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  let data_files = [ 'x86.json', 'arm.json' ];
-  let iterable = data_files.map(f => fetch(f).then(r => r.json()).then(data => data));
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
-  function build_compare_data (raw) {
-    //console.log(raw);
-    return {
-      name: raw.metadata.platform,
-      benchmarks: raw.benchmarks.map(lab => {
-        let num = 0;
-        let sum = 0;
+    <title>Python Benchmark on M1 ( Rosetta2 vs ARM )</title>
+  </head>
+  <body>
 
-        lab.runs.forEach(run => {
-          if (run.values) {
-            num += run.values.length;
-            sum += run.values.reduce((a, v) => a + v, 0);
-          }
-        });
+    <div class='container-fluid'>
+      <h1>
+        <div style='margin-bottom: -15px;'>Python Benchmark on M1</div>
+        <sub>Rosetta2 vs ARM</sub>
+      </h1>
+      <div id='chart' class='w-100'></div>
+      <a title="Python Benchmark on M1 ( Rosetta2 vs ARM )" href='https://github.com/diewland/py-rosetta2-vs-arm'>GitHub</a>
+    </div>
 
-        return {
-          name: lab.metadata.name,
-          desc: lab.metadata.description,
-          value: sum / num,
-        }
-      }),
-    };
-  }
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
-  Promise.all(iterable).then(resp => {
-    let compare_data = resp.map(raw => build_compare_data(raw));
-    console.log(compare_data);
-  });
-
-</script>
+    <!-- render graph -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.23.1/apexcharts.min.css" integrity="sha512-H6KANMpZQKsK9c09UqdcQv02JTiZ/hMVwxkcbDLrp125CR884wwEdnWDm+Yuo6tihuC/cizLYWAjMZi0xAfGig==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.23.1/apexcharts.min.js" integrity="sha512-WwS+Umbt0Rg018tm6mpitwwR84x+RlrWFCd6byM4xf5Jgv2hKHA9dCwQ5IcyJr6z3gt+6O3mEvo58AYp9KjZ4g==" crossorigin="anonymous"></script>
+    <script src='render_graph.js'></script>
+  </body>
+</html>
