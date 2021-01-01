@@ -1,4 +1,4 @@
-let data_files = [ 'x86.json', 'arm.json' ];
+let data_files = [ 'nitro5.json', 'x86.json', 'arm.json' ];
 let iterable = data_files.map(f => fetch(f).then(r => r.json()).then(data => data));
 
 function build_compare_data (raw) {
