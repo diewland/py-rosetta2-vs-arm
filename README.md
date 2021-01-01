@@ -1,5 +1,7 @@
 # Python Benchmark on M1 ( Rosetta2 vs ARM )
 
+[Graph ?](https://diewland.github.io/py-rosetta2-vs-arm/)
+
 ### Spec
 
 x86 on Rosetta2
