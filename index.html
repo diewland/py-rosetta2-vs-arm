@@ -18,15 +18,37 @@
         <sub>Rosetta2 vs ARM</sub>
       </h1>
       <div id='chart' class='w-100'></div>
-      <div class='row'>
-        <div class='col-md-6'>
-          <img class='img w-100' src='neofetch_win.png'>
-        </div>
-        <div class='col-md-6'>
-          <img class='img w-100' src='neofetch_mac.png'>
-          <a title="Python Benchmark on M1 ( Rosetta2 vs ARM )" href='https://github.com/diewland/py-rosetta2-vs-arm'>GitHub</a>
-        </div>
-      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">OS</th>
+            <th scope="col">Benchmark Architecture</th>
+            <th scope="col">Host</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td scope="row">Windows-10-10.0.21286-SP0 ( Blue )</td>
+            <td>64-bit x86 via x86 Emulator on Win10 ARM via Parallels ( Tech Preview )</td>
+            <td>MacBookAir M1</td>
+          </tr>
+          <tr>
+            <td scope="row">Windows-10-10.0.19041-SP0 ( Green )</td>
+            <td>64-bit x86</td>
+            <td>Acer Nitro AN515-52</td>
+          </tr>
+          <tr>
+            <td scope="row">macOS-11.1-x86_64-i386-64bit ( Orange )</td>
+            <td>64-bit x86 via Rosetta2</td>
+            <td>MacBookAir M1</td>
+          </tr>
+          <tr>
+            <td scope="row">macOS-11.1-arm64-arm-64bit ( Red )</td>
+            <td>64-bit ARM</td>
+            <td>MacBookAir M1</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <!-- Bootstrap Bundle with Popper -->
